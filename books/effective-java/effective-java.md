@@ -1,13 +1,13 @@
 ```
-Progress: 31/413
-Next topic - Item 2
+Progress: 38/413
+Next topic - Item 3
 ```
 
 ---
 
-# <center> *Notes* </center>
+# <p style="text-align: center;"> *Notes* </p>
 
-## <center>Chapter 2:</center>
+## <p style="text-align: center;"> Chapter 2: </p>
 
 ### <u>Item 1:</u> Consider static factory methods instead of constructors.
 
@@ -91,3 +91,12 @@ BufferedReader br = Files.newBufferedReader(path);
 ```
 List<Complaint> litany = Collections.list(legacyLitany);
 ```
+
+### <u>Item 2:</u> Consider a builder when faced with many constructor parameters
+
+- The Builder pattern simulates named optional parameters. [Example](./src/chapter2/NutritionFacts.java)
+- The Builder pattern is well suited to class hierarchies. [Example](./src/chapter2/Pizza.java)
+- The Builder pattern has disadvantages as well. In order to create an object, you must first create its builder. While
+  the cost of creating this builder is unlikely to be noticeable in practice, it could be a problem in
+  performance-critical situations.
+  
