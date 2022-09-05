@@ -1,13 +1,15 @@
 ```
-Progress: 38/413
-Next topic - Item 3
+Progress: 40/413
+Next topic - Item 4
 ```
 
 ---
 
-# <p style="text-align: center;"> *Notes* </p>
+[//]: # (TODO: center Notes)
 
-## <p style="text-align: center;"> Chapter 2: </p>
+# *Notes*
+
+## Chapter 2:
 
 ### <u>Item 1:</u> Consider static factory methods instead of constructors.
 
@@ -99,4 +101,61 @@ List<Complaint> litany = Collections.list(legacyLitany);
 - The Builder pattern has disadvantages as well. In order to create an object, you must first create its builder. While
   the cost of creating this builder is unlikely to be noticeable in practice, it could be a problem in
   performance-critical situations.
-  
+
+### <u>Item 3:</u> Enforce the singleton property with a private constructor or an enum type
+
+```java
+// Singleton with public final field
+public class Elvis {
+    public static final Elvis INSTANCE = new Elvis();
+
+    private Elvis() { ...}
+
+    public void leaveTheBuilding() { ...}
+}
+
+// Singleton with static factory
+public class Elvis {
+    private static final Elvis INSTANCE = new Elvis();
+
+    private Elvis() { ...}
+
+    public static Elvis getInstance() {
+        return INSTANCE;
+    }
+
+    public void leaveTheBuilding() { ...}
+}
+```
+
+[//]: # (TODO: add link to Item 89)
+
+- To make a singleton class that uses either of these approaches serializable
+  (Chapter 12), it is not sufficient merely to add implements Serializable to its declaration. To maintain the singleton
+  guarantee, declare all instance fields transient and provide a readResolve method ([Item 89]()). Otherwise, each time
+  a serialized instance is deserialized, a new instance will be created, leading, in the case of our example, to
+  spurious Elvis sightings. To prevent this from happening, add this readResolve method to the Elvis class:
+
+```java
+public class Elvis {
+    // readResolve method to preserve singleton property
+    private Object readResolve() {
+        // Return the one true Elvis and let the garbage collector
+        // take care of the Elvis impersonator.
+        return INSTANCE;
+    }
+}
+```
+
+- This approach is similar to the public field approach, but it is more concise, provides the serialization machinery
+  for free, and provides an ironclad guarantee against multiple instantiation, even in the face of sophisticated
+  serialization or reflection attacks.
+
+```java
+// Enum singleton - the preferred approach
+public enum Elvis {
+    INSTANCE;
+
+    public void leaveTheBuilding() { ...}
+}
+```
