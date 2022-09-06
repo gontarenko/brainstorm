@@ -1,6 +1,6 @@
 ```
-Progress: 40/413
-Next topic - Item 4
+Progress: 43/413
+Next topic - Item 6
 ```
 
 ---
@@ -158,4 +158,68 @@ public enum Elvis {
 
     public void leaveTheBuilding() { ...}
 }
+```
+
+### <u>Item 4:</u> Enforce noninstantiability with a private constructor
+
+```java
+public class UtilityClass {
+    private UtilityClass() {
+        throw new AssertionError();
+    }
+
+    // static methods...
+}
+```
+
+### <u>Item 5:</u> Prefer dependency injection to hardwiring resources
+
+<details><summary>Examples</summary>
+
+```java
+// Inappropriate use of static utility - inflexible & untestable!
+public class SpellChecker {
+    private static final Lexicon dictionary = ...;
+
+    private SpellChecker() { ...} // Noninstantiable
+
+    public static boolean isValid(String word) { ...}
+
+    public static List<String> suggestions(String typo) { ...}
+}
+
+// Inappropriate use of singleton - inflexible & untestable!
+public class SpellChecker {
+    private final Lexicon dictionary = ...;
+
+    private SpellChecker(...) { ...}
+
+    public static SpellChecker INSTANCE = new SpellChecker(...);
+
+    public boolean isValid(String word) { ...}
+
+    public List<String> suggestions(String typo) { ...}
+}
+
+// Dependency injection provides flexibility and testability
+public class SpellChecker {
+    private final Lexicon dictionary;
+
+    public SpellChecker(Lexicon dictionary) {
+        this.dictionary = Objects.requireNonNull(dictionary);
+    }
+
+    public boolean isValid(String word) { ...}
+
+    public List<String> suggestions(String typo) { ...}
+}
+```
+
+</details>
+
+- A useful variant of the pattern is to pass a resource factory to the constructor. The Supplier<T> interface,
+  introduced in Java 8, is perfect for representing factories.
+  
+```java
+Mosaic create(Supplier<? extends Tile> tileFactory) { ... }
 ```
