@@ -1,6 +1,6 @@
 package kyu8;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
@@ -9,12 +9,12 @@ public class ExpressionsMatter {
         assert 6 == expressionsMatter(2, 1, 2);
     }
 
-    private static final List<Function<Integer[], Integer>> functions = new ArrayList<>() {{
-        add(ExpressionsMatter::firstFunc);
-        add(ExpressionsMatter::secondFunc);
-        add(ExpressionsMatter::thirdFunc);
-        add(ExpressionsMatter::fourthFunc);
-    }};
+    private static final List<Function<Integer[], Integer>> functions = Arrays.asList(
+            ExpressionsMatter::firstFunc,
+            ExpressionsMatter::secondFunc,
+            ExpressionsMatter::thirdFunc,
+            ExpressionsMatter::fourthFunc
+    );
 
     public static int expressionsMatter(int a, int b, int c) {
         Integer[] arr = new Integer[]{a, b, c};

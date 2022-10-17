@@ -25,7 +25,7 @@ public class TwoSum {
                     return new int[]{i, j};
             }
         }
-        return null;
+        return new int[]{-1, -1};
     }
 
     public int[] twoSum2(int[] nums, int target) {
