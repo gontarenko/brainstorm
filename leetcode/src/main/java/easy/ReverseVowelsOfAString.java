@@ -68,8 +68,6 @@ public class ReverseVowelsOfAString {
             if (isLeftVowel && isRightVowel) {
                 answer.setCharAt(p1, charRight);
                 answer.setCharAt(p2, charLeft);
-                p1++;
-                p2--;
             } else if (isLeftVowel) {
                 while (!vowels.contains(charRight)) {
                     p2--;
@@ -80,8 +78,6 @@ public class ReverseVowelsOfAString {
                 }
                 answer.setCharAt(p1, charRight);
                 answer.setCharAt(p2, charLeft);
-                p1++;
-                p2--;
             } else if (isRightVowel) {
                 while (!vowels.contains(charLeft)) {
                     p1++;
@@ -92,12 +88,9 @@ public class ReverseVowelsOfAString {
                 }
                 answer.setCharAt(p1, charRight);
                 answer.setCharAt(p2, charLeft);
-                p1++;
-                p2--;
-            } else {
-                p1++;
-                p2--;
             }
+            p1++;
+            p2--;
         }
 
         return answer.toString();
