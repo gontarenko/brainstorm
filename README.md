@@ -1,5 +1,5 @@
 ## Accounts
-- ### [leetcode](https://leetcode.com/anarchtsu/)
+- ### [leetcode](https://leetcode.com/gontarenko/)
 - ### [codewars](https://www.codewars.com/users/anarchtsu)
 
 ## Books

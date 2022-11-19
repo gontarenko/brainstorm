@@ -1,5 +1,7 @@
 package easy;
 
+import util.ListNode;
+
 public class ConvertBinaryNumberToInteger {
     public static void main(String[] args) {
         ListNode listNode = new ListNode(1, new ListNode(0, new ListNode(1)));
@@ -15,19 +17,5 @@ public class ConvertBinaryNumberToInteger {
             binary.append(head.val);
             return Integer.parseInt(binary.toString(), 2);
         }
-    }
-}
-
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
     }
 }
