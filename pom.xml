@@ -23,6 +23,7 @@
     <modules>
         <module>leetcode</module>
         <module>codewars</module>
+        <module>algos</module>
     </modules>
 
     <properties>
