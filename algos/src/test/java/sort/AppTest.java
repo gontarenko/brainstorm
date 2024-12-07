@@ -1,4 +1,4 @@
-package org.example;
+package sort;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
