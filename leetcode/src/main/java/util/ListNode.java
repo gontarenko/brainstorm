@@ -4,6 +4,9 @@ public class ListNode {
     public int val;
     public ListNode next;
 
+    public ListNode() {
+    }
+
     public ListNode(int val) {
         this.val = val;
     }
@@ -15,6 +18,10 @@ public class ListNode {
 
     @Override
     public String toString() {
+        return "{" + this.val + "}";
+    }
+
+    public String getAll() {
         StringBuilder sb = new StringBuilder();
         ListNode currentNode = this;
         while (currentNode != null) {

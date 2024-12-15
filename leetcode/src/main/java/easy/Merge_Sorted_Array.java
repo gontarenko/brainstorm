@@ -10,6 +10,7 @@ public class Merge_Sorted_Array {
     }
 
     public static void merge(int[] nums1, int m, int[] nums2, int n) {
+//        Double.NEGATIVE_INFINITY
         int i1 = m - 1;
         int i2 = n - 1;
         int pointer = nums1.length - 1;

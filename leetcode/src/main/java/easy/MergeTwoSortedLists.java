@@ -16,87 +16,32 @@ public class MergeTwoSortedLists {
     }
 
     public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        if (list1 == null && list2 == null) {
-            return null;
-        }
-        if (list1 == null) {
-            return list2;
-        }
-        if (list2 == null) {
-            return list1;
-        }
-        ListNode head;
-        if (list1.val < list2.val) {
-            head = list1;
-            list1 = list1.next;
-        } else {
-            head = list2;
-            list2 = list2.next;
-        }
-        ListNode current = head;
-        while (list1 != null || list2 != null) {
-            if (list1 == null) {
-                while (list2 != null) {
-                    current.next = list2;
-                    list2 = list2.next;
-                    current = current.next;
-                }
+        ListNode dummy = new ListNode();
+
+        ListNode p1 = list1;
+        ListNode p2 = list2;
+
+        ListNode curr = dummy;
+        while (p1 != null && p2 != null) {
+            if (p1.val < p2.val) {
+                curr.next = p1;
+                p1 = p1.next;
+            } else {
+                curr.next = p2;
+                p2 = p2.next;
             }
-            if (list2 == null) {
-                while (list1 != null) {
-                    current.next = list1;
-                    list1 = list1.next;
-                    current = current.next;
-                }
-            }
-            if (list1 != null && list2 != null) {
-                if (list1.val < list2.val) {
-                    current.next = list1;
-                    list1 = list1.next;
-                } else {
-                    current.next = list2;
-                    list2 = list2.next;
-                }
-                current = current.next;
-            }
+
+            curr = curr.next;
         }
-        return head;
+
+        if (p1 != null) {
+            curr.next = p1;
+        }
+        if (p2 != null) {
+            curr.next = p2;
+        }
+
+        return dummy.next;
     }
 
-    public static ListNode mergeTwoLists2(ListNode list1, ListNode list2) {
-        if (list1 == null && list2 == null) {
-            return null;
-        }
-        if (list1 == null) {
-            return list2;
-        }
-        if (list2 == null) {
-            return list1;
-        }
-        ListNode head;
-        if (list1.val < list2.val) {
-            head = list1;
-            list1 = list1.next;
-        } else {
-            head = list2;
-            list2 = list2.next;
-        }
-        ListNode current = head;
-        while (list1 != null && list2 != null) {
-            if (list1.val < list2.val) {
-                current.next = list1;
-                list1 = list1.next;
-            } else {
-                current.next = list2;
-                list2 = list2.next;
-            }
-            current = current.next;
-        }
-        if (list1 == null) {
-            current.next = list2;
-        } else {
-            current.next = list1;
-        }
-        return head;
-    }
 }
